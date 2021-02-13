@@ -220,7 +220,7 @@ action:
               - service: light.turn_on
                 target: !input light_target
                 data:
-                  brightness: !input brightness_morning
+                  brightness: 100
               # Day Scene              
               - conditions:
                   - "{{ brightness_day > 0 }}"
