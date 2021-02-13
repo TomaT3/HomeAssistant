@@ -239,6 +239,8 @@ action:
             default:
               - service: light.turn_on
                 target: !input light_target
+                data:
+                  brightness: 20
       # Trigger to state = "off"
       - conditions:
           - condition: template
