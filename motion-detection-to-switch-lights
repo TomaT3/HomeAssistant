@@ -221,7 +221,7 @@ action:
                   - condition: time
                     after: !input time_scene_morning
                     before: !input time_scene_day
-                sequence:
+                action:
                   - service: light.turn_on
                       target: !input light_target
                       data:
@@ -232,7 +232,7 @@ action:
                   - condition: time
                     after: !input time_scene_day
                     before: !input time_scene_evening
-                sequence:
+                action:
                   - service: light.turn_on
                       target: !input light_target
                       data:
@@ -243,7 +243,7 @@ action:
                   - condition: time
                     after: !input time_scene_evening
                     before: !input time_scene_night
-                sequence:
+                action:
                   - service: light.turn_on
                       target: !input light_target
                       data:
@@ -254,7 +254,7 @@ action:
                   - condition: time
                     after: !input time_scene_night
                     before: !input time_scene_morning
-                sequence:
+                action:
                   - service: light.turn_on
                       target: !input light_target
                       data:
