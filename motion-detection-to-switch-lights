@@ -221,7 +221,7 @@ action:
                   - service: light.turn_on
                     target: !input light_target
                     data:
-                      brightness: !input brightness_morning
+                      brightness: {{ brightness_morning }}
               # Day Scene              
               - conditions:
                   - "{{ brightness_day > 0 }}"
@@ -232,7 +232,7 @@ action:
                   - service: light.turn_on
                     target: !input light_target
                     data:
-                      brightness: !input brightness_day
+                      brightness: {{ brightness_day }}
               # Evening Scene              
               - conditions:
                   - "{{ brightness_evening > 0 }}"
@@ -243,7 +243,7 @@ action:
                   - service: light.turn_on
                     target: !input light_target
                     data:
-                      brightness: !input brightness_evening
+                      brightness: {{ brightness_evening }}
               # Night Scene              
               - conditions:
                   - "{{ brightness_night > 0 }}"
@@ -254,7 +254,7 @@ action:
                   - service: light.turn_on
                     target: !input light_target
                     data:
-                      brightness: !input brightness_night
+                      brightness: {{ brightness_night }}
             # If State -> "On" defaulting to turn light on
             default:
               - service: light.turn_on
