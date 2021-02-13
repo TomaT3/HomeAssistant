@@ -217,40 +217,44 @@ action:
                   - condition: time
                     after: !input time_scene_morning
                     before: !input time_scene_day
-              - service: light.turn_on
-                target: !input light_target
-                data:
-                  brightness: !input brightness_morning
+                sequence:
+                  - service: light.turn_on
+                    target: !input light_target
+                    data:
+                      brightness: !input brightness_morning
               # Day Scene              
               - conditions:
                   - "{{ brightness_day > 0 }}"
                   - condition: time
                     after: !input time_scene_day
                     before: !input time_scene_evening
-              - service: light.turn_on
-                target: !input light_target
-                data:
-                  brightness: !input brightness_day
+                sequence:
+                  - service: light.turn_on
+                    target: !input light_target
+                    data:
+                      brightness: !input brightness_day
               # Evening Scene              
               - conditions:
                   - "{{ brightness_evening > 0 }}"
                   - condition: time
                     after: !input time_scene_evening
                     before: !input time_scene_night
-              - service: light.turn_on
-                target: !input light_target
-                data:
-                  brightness: !input brightness_evening
+                sequence:
+                  - service: light.turn_on
+                    target: !input light_target
+                    data:
+                      brightness: !input brightness_evening
               # Night Scene              
               - conditions:
                   - "{{ brightness_night > 0 }}"
                   - condition: time
                     after: !input time_scene_night
                     before: !input time_scene_morning
-              - service: light.turn_on
-                target: !input light_target
-                data:
-                  brightness: !input brightness_night
+                sequence:
+                  - service: light.turn_on
+                    target: !input light_target
+                    data:
+                      brightness: !input brightness_night
             # If State -> "On" defaulting to turn light on
             default:
               - service: light.turn_on
