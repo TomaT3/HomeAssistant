@@ -96,48 +96,60 @@ blueprint:
       default: "00:00:00"
       selector:
         time:
-    scene_morning:
-      name: Scene for the morning (Optional)
-      default: scene.none
+    brightness_morning:
+      name: Brightness morning
+      description: Brightness in the morning.
+      default: 100
       selector:
-        entity:
-          domain: scene
+        number:
+          min: 0
+          max: 100
+          unit_of_measurement: percentage
     time_scene_morning:
       name: Time for the morning scene (Optional)
       description: A time input which defines the time from which on the scene will be activated if motion is detected.
       default: "00:00:00"
       selector:
         time:
-    scene_day:
-      name: Scene for the bright day (Optional)
-      default: scene.none
+    brightness_day:
+      name: Brightness day
+      description: Brightness in the day.
+      default: 100
       selector:
-        entity:
-          domain: scene
+        number:
+          min: 0
+          max: 100
+          unit_of_measurement: percentage
     time_scene_day:
       name: Time for the day scene (Optional)
       description: A time input which defines the time from which on the scene will be activated if motion is detected.
       default: "00:00:00"
       selector:
         time:
-    scene_evening:
-      name: Scene for the evening (Optional)
-      default: scene.none
+    brightness_evening:
+      name: Brightness evening
+      description: Brightness in the evening.
+      default: 100
       selector:
-        entity:
-          domain: scene
+        number:
+          min: 0
+          max: 100
+          unit_of_measurement: percentage
     time_scene_evening:
       name: Time for the evening scene (Optional)
       description: A time input which defines the time from which on the scene will be activated if motion is detected.
       default: "00:00:00"
       selector:
         time:
-    scene_night:
-      name: Scene for the dark night (Optional)
-      default: scene.none
+    brightness_night:
+      name: Brightness night
+      description: Brightness in the night.
+      default: 100
       selector:
-        entity:
-          domain: scene
+        number:
+          min: 0
+          max: 100
+          unit_of_measurement: percentage
     time_scene_night:
       name: Time for the night scene (Optional)
       description: A time input which defines the time from which on the scene will be activated if motion is detectedd.
@@ -158,10 +170,10 @@ max_exceeded: silent
 
 variables:
   scene_ambient: !input scene_ambient
-  scene_morning: !input scene_morning
-  scene_day: !input scene_day
-  scene_evening: !input scene_evening
-  scene_night: !input scene_night
+  brightness_morning: !input brightness_morning
+  brightness_day: !input brightness_day
+  brightness_evening: !input brightness_evening
+  brightness_night: !input brightness_night
   automation_blocker: !input automation_blocker
   automation_blocker_boolean : !input automation_blocker_boolean
   no_motion_blocker: !input no_motion_blocker
@@ -205,36 +217,48 @@ action:
           - choose:
               # Morning Scene
               - conditions:
-                  - "{{ scene_morning != 'scene.none'}}"
+                  - "{{ brightness_morning > 0 }}"
                   - condition: time
                     after: !input time_scene_morning
                     before: !input time_scene_day
                 sequence:
-                  - scene: !input scene_morning
+                  - service: light.turn_on
+                      target: !input light_target
+                      data:
+                        brightness: !input brightness_morning
               # Day Scene              
               - conditions:
-                  - "{{ scene_day != 'scene.none'}}"
+                  - "{{ brightness_day > 0 }}"
                   - condition: time
                     after: !input time_scene_day
                     before: !input time_scene_evening
                 sequence:
-                  - scene: !input scene_day
+                  - service: light.turn_on
+                      target: !input light_target
+                      data:
+                        brightness: !input brightness_day
               # Evening Scene              
               - conditions:
-                  - "{{ scene_evening != 'scene.none'}}"
+                  - "{{ brightness_evening > 0 }}"
                   - condition: time
                     after: !input time_scene_evening
                     before: !input time_scene_night
                 sequence:
-                  - scene: !input scene_evening
+                  - service: light.turn_on
+                      target: !input light_target
+                      data:
+                        brightness: !input brightness_evening
               # Night Scene              
               - conditions:
-                  - "{{ scene_night != 'scene.none'}}"
+                  - "{{ brightness_night > 0 }}"
                   - condition: time
                     after: !input time_scene_night
                     before: !input time_scene_morning
                 sequence:
-                  - scene: !input scene_night
+                  - service: light.turn_on
+                      target: !input light_target
+                      data:
+                        brightness: !input brightness_night
             # If State -> "On" defaulting to turn light on
             default:
               - service: light.turn_on
