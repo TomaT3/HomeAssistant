@@ -223,9 +223,9 @@ action:
                     before: !input time_scene_day
                 action:
                   - service: light.turn_on
-                      target: !input light_target
-                      data:
-                        brightness: !input brightness_morning
+                    target: !input light_target
+                    data:
+                      brightness: !input brightness_morning
               # Day Scene              
               - conditions:
                   - "{{ brightness_day > 0 }}"
@@ -234,9 +234,9 @@ action:
                     before: !input time_scene_evening
                 action:
                   - service: light.turn_on
-                      target: !input light_target
-                      data:
-                        brightness: !input brightness_day
+                    target: !input light_target
+                    data:
+                      brightness: !input brightness_day
               # Evening Scene              
               - conditions:
                   - "{{ brightness_evening > 0 }}"
@@ -245,9 +245,9 @@ action:
                     before: !input time_scene_night
                 action:
                   - service: light.turn_on
-                      target: !input light_target
-                      data:
-                        brightness: !input brightness_evening
+                    target: !input light_target
+                    data:
+                      brightness: !input brightness_evening
               # Night Scene              
               - conditions:
                   - "{{ brightness_night > 0 }}"
@@ -256,9 +256,9 @@ action:
                     before: !input time_scene_morning
                 action:
                   - service: light.turn_on
-                      target: !input light_target
-                      data:
-                        brightness: !input brightness_night
+                    target: !input light_target
+                    data:
+                      brightness: !input brightness_night
             # If State -> "On" defaulting to turn light on
             default:
               - service: light.turn_on
