@@ -104,7 +104,6 @@ blueprint:
         number:
           min: 0
           max: 100
-          unit_of_measurement: percentage
     time_scene_morning:
       name: Time for the morning scene (Optional)
       description: A time input which defines the time from which on the scene will be activated if motion is detected.
@@ -119,7 +118,6 @@ blueprint:
         number:
           min: 0
           max: 100
-          unit_of_measurement: percentage
     time_scene_day:
       name: Time for the day scene (Optional)
       description: A time input which defines the time from which on the scene will be activated if motion is detected.
@@ -134,7 +132,6 @@ blueprint:
         number:
           min: 0
           max: 100
-          unit_of_measurement: percentage
     time_scene_evening:
       name: Time for the evening scene (Optional)
       description: A time input which defines the time from which on the scene will be activated if motion is detected.
@@ -149,7 +146,6 @@ blueprint:
         number:
           min: 0
           max: 100
-          unit_of_measurement: percentage
     time_scene_night:
       name: Time for the night scene (Optional)
       description: A time input which defines the time from which on the scene will be activated if motion is detectedd.
