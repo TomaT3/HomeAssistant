@@ -1,5 +1,5 @@
 blueprint:
-  name: Motion Detection to switch lights
+  name: Motion detection to switch lights
   description: >
     # YAMA V10
     Turn on lights or set brightness when motion is detected. 
